@@ -283,4 +283,70 @@ font-size:25px;
 
 }
 
+}.heart{
+    position:fixed;
+    pointer-events:none;
+    font-size:24px;
+    color:#ff2d75;
+    font-weight:bold;
+    animation:heartFly 2s linear forwards;
+    text-shadow:0 0 10px #ff2d75;
+    z-index:99999;
+}
+
+@keyframes heartFly{
+
+0%{
+opacity:1;
+transform:translateY(0) scale(.5);
+}
+
+100%{
+opacity:0;
+transform:translateY(-180px) scale(1.8) rotate(20deg);
+}
+
+}.boomHeart{
+
+position:fixed;
+
+pointer-events:none;
+
+font-size:28px;
+
+font-weight:bold;
+
+color:#ff2d75;
+
+text-shadow:
+0 0 10px #ff2d75,
+0 0 20px hotpink,
+0 0 35px deeppink;
+
+z-index:999999;
+
+animation:explode 2.5s linear forwards;
+
+}
+
+@keyframes explode{
+
+0%{
+
+opacity:1;
+
+transform:translate(0,0) scale(.3) rotate(0deg);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:translate(var(--x),var(--y))
+scale(2)
+rotate(720deg);
+
+}
+
 }

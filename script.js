@@ -58,7 +58,7 @@ loader.load(
         for(let i=0;i<350;i++){
 
             const geometry = new THREE.TextGeometry(
-                "LOVE",
+                "I LOVE YOU ALAA",
                 {
                     font:font,
                     size:1.3,
@@ -167,5 +167,77 @@ function showGallery() {
     gallery.style.display = "flex";
 
     gallery.classList.add("fadeIn");
+
+}function createHeart(x,y){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML="❤️<br><span style='font-size:12px'>ALAA</span>";
+
+    heart.style.left=x+"px";
+
+    heart.style.top=y+"px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },2000);
+
+}
+
+document.querySelectorAll(".photo").forEach(img=>{
+
+    img.addEventListener("mousemove",e=>{
+
+        createHeart(e.clientX,e.clientY);
+
+    });
+
+    img.addEventListener("touchmove",e=>{
+
+        const t=e.touches[0];
+
+        createHeart(t.clientX,t.clientY);
+
+    });
+
+});function explodeHearts(x,y){
+
+for(let i=0;i<50;i++){
+
+const h=document.createElement("div");
+
+h.className="boomHeart";
+
+h.innerHTML="❤️<br><span style='font-size:11px'>ALAA</span>";
+
+h.style.left=x+"px";
+
+h.style.top=y+"px";
+
+const angle=Math.random()*Math.PI*2;
+
+const distance=120+Math.random()*250;
+
+const dx=Math.cos(angle)*distance+"px";
+
+const dy=Math.sin(angle)*distance+"px";
+
+h.style.setProperty("--x",dx);
+
+h.style.setProperty("--y",dy);
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},2500);
+
+}
 
 }
