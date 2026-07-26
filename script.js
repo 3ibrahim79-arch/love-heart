@@ -118,19 +118,43 @@ window.addEventListener("resize", () => {
         window.innerHeight
     );
 
-});
+})
 
-renderer.domElement.addEventListener("click", () => {
+function tryStart() {
 
     if (clicked) return;
 
     clicked = true;
 
-    music.play();
+    const p = music.play();
 
-    zoomInside();
+    if (p !== undefined && typeof p.then === 'function') {
 
-});
+        p.then(() => {
+
+            zoomInside();
+
+        }).catch(() => {
+
+            // play rejected (autoplay policy); still proceed to zoom and show gallery on interaction
+            zoomInside();
+
+        });
+
+    } else {
+
+        zoomInside();
+
+    }
+
+}
+
+renderer.domElement.addEventListener("click", tryStart);
+renderer.domElement.addEventListener("touchstart", (e) => {
+    // prevent the first touch from also generating a click later
+    e.preventDefault();
+    tryStart();
+}, {passive:false});
 
 function zoomInside() {
 
